@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+() "A" as A
+() "B" as B
+() "C" as C
+() "D" as D
+() "E" as E
+() "F" as F
+
+A --> B : 3
+A --> F : 1
+B --> E : 3
+B --> C : 3
+C --> D : 5
+D --> E : 4
+F --> E : 2
+@enduml

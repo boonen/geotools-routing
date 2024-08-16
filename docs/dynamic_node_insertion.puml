@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam interface<<Layout>> {
+  borderStyle dashed
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+skinparam interface<<Point>> {
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+' Nodes
+() P<<Point>>
+() "Node A" as A
+() "Node B" as B
+() Dummy<<Layout>>
+() "Node A" as A2
+() "Node C" as C
+() "Node D" as D
+() "Node B" as B2
+
+' Old situation
+P -[dashed]> Dummy
+note right of Dummy
+  Location of new edge
+end note
+A --- Dummy
+Dummy ----> B
+
+' New situation
+A -[hidden] A2
+B -[hidden] B2
+A2 -- C
+C -- D
+D ---> B2
+
+@enduml

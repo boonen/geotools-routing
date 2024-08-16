@@ -82,23 +82,7 @@ The network that we use for testing is very simple. It can be used to test sever
 4. On edge **BC** we can model a Regulated Passage Point (RPP) that can be used to model a complex scenario where passage times depend on scheduling, traffic
    and other factors
 
-```plantuml
-left to right direction
-() "A" as A
-() "B" as B
-() "C" as C
-() "D" as D
-() "E" as E
-() "F" as F
-
-A --> B : 3
-A --> F : 1
-B --> E : 3
-B --> C : 3
-C --> D : 5
-D --> E : 4
-F --> E : 2
-```
+![Routing Network](./docs/network.svg)
 
 ## Configuration
 
@@ -136,48 +120,7 @@ as a virtual edge. The edge on which the RPP is mapped will be split in two part
 supplied in the Feature that is in the Geopackage file otherwise the default configured length is used.
 
 **Illustration of how RRPs are dynamically inserted in the network**
-```plantuml
-@startuml
-left to right direction
-skinparam shadowing false
-skinparam interface<<Layout>> {
-  borderStyle dashed
-  backgroundColor Transparent
-  fontColor Transparent
-  stereotypeFontColor Transparent
-}
-skinparam interface<<Point>> {
-  fontColor Transparent
-  stereotypeFontColor Transparent
-}
-
-' Nodes
-() P<<Point>>
-() "Node A" as A
-() "Node B" as B
-() Dummy<<Layout>>
-() "Node A" as A2
-() "Node C" as C
-() "Node D" as D
-() "Node B" as B2
-
-' Old situation
-P -[dashed]> Dummy
-note right of Dummy
-  Location of new edge
-end note
-A --- Dummy
-Dummy ----> B
-
-' New situation
-A -[hidden] A2
-B -[hidden] B2
-A2 -- C
-C -- D
-D ---> B2
-
-@enduml
-```
+![Dynamic Node Insertion to support RRPs](./docs/dynamic_node_insertion.svg)
 
 ## License
 
