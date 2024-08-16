@@ -1,6 +1,6 @@
 # Showcase of a complex routing algorithm using GeoTools
 
-![Build Status](https://img.shields.io/github/workflow/status/boonen/geotools-routing/Build) ![License](https://img.shields.io/github/license/boonen/geotools-routing)
+![Build Status](https://img.shields.io/github/actions/workflow/status/boonen/geotools-routing/maven.yml) ![License](https://img.shields.io/github/license/boonen/geotools-routing)
 
 This project demonstrates how to use the GeoTools library to calculate routes using complex criteria. It shows a general model of traffic situations in which
 departure and arrival times, segment restrictions, segments characteristics and characteristics of the means of transportation are taken into account. It shows
