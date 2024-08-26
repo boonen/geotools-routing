@@ -9,6 +9,10 @@ how you can model waiting times by using a two-step approach:
 1. Calculate routes for all known traffic
 2. Recalculate and use arrival times from the first round to account for waiting times (first come, first served)
 
+This idea is illustrated in the following [Domain Storytelling diagram](https://domainstorytelling.org/):
+
+![Domain Storytelling](./docs/domain_storytelling.svg)
+
 ## Table of Contents
 
 1. [Installation](#installation)

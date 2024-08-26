@@ -1,0 +1,57 @@
+@startwbs
+skinparam legend {
+  backgroundColor #GhostWhite
+  entrySeparator #GhostWhite
+}
+
+*[#lightyellow] Routing Demo
+
+**[#lightyellow] Graph Construction
+---[#lightyellow] Data Import
+---- Read LineString data from Geopackage
+++++ Read restrictions from Geopackage
+++++ Read Regulated Passage Points from Geopackage
+*** Convert FeatureCollection to Graph
+
+** Basic Shortest Path Calculation
+--- Inject virtual nodes for origin and destination
+--- Write cost function based on edge data (constant speed)
++++ Track arrival times at edges
++++ Return LineString path
+
+** API Integration
+*** Route single means of transportation
+*** Route batch of means of transportation
+
+** Complex Cost functions
+*** Take class of means of transportation and segment into account
+*** Enable and disable restrictions via API
+*** Apply restrictions in cost function
+
+** Time-based Routing
+--- Time-based restrictions
+**** Include arrival time in cost function
+**** Update time-based restrictions via API
++++ Regulated Passage Points
+**** Configure Regulated Passage Points using input file
+**** Implement a bin-packing algorithm for Regulated Passage Points
+**** Query Regulated Passage Points via API
+**** Configure Regulated Passage Points via API
+--- Time-dependent cost
+**** Configure historical traffic data using input file
+**** Use historical traffic data in cost function (variable speed)
+**** Update current traffic data via API
+
+** Flexible Input
+*** Use geocoder to find origin and destination
+*** Add intermediate waypoints
+*** Add waiting time to intermediate waypoints
+
+legend left
+    <#GhostWhite,#GhostWhite>|    |= __Legend__ |
+
+    |=<#lightyellow>    | In progress |
+    |<#lightgreen>  | Done |
+endlegend
+
+@endwbs
