@@ -65,8 +65,8 @@ algorithm.
 
 Expected features:
 
-- [ ] Geographical data is read from [Geopackage files](https://www.geopackage.org/)
-- [ ] Automated graph construction from topological correct LineString data
+- [x] Geographical data is read from [Geopackage files](https://www.geopackage.org/)
+- [x] Automated graph construction from topological correct LineString data
 - [ ] Interaction via REST API using GeoJSON as input and output
 - [ ] Class-based cost function which takes the edge and transportation type as input
 - [ ] Dynamic cost function based on arrival time at edges
