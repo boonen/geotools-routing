@@ -91,7 +91,7 @@ The network that we use for testing is very simple. It can be used to test sever
 ## Configuration
 
 The software is highly configurable, but the default configuration should be sufficient for most use cases. General behaviour can be configured using the
-properties file `application.properties` which can be found in [./src/main/resources/application.properties](./src/main/resources/application.properties). The
+properties file `application.properties` which can be found in [./src/main/resources/application.properties](./src/main/resources/application.yml). The
 network and routing behaviour can be configured using a Geopackage file. An example can be found in [./src/test/resources](./src/test/resources/test_network.gpkg). 
 
 ### Configuration File
@@ -99,7 +99,7 @@ network and routing behaviour can be configured using a Geopackage file. An exam
 Provide details about any configuration files (e.g., application.properties, config.yaml).
 
 ```properties
-# src/main/resources/application.properties
+# src/main/resources/application.yml
 network.file=classpath:network.gpkg
 network.topology=segments
 network.cost-attribute=travel_time

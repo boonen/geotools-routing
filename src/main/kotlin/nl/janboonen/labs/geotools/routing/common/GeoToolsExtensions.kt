@@ -7,10 +7,11 @@ import org.geotools.feature.FeatureCollection
 import org.geotools.feature.FeatureIterator
 import org.geotools.feature.simple.SimpleFeatureBuilder
 import org.geotools.geometry.jts.JTSFactoryFinder
+import org.geotools.graph.structure.Edge
 import org.geotools.graph.structure.Graph
 import org.geotools.graph.structure.Node
 import org.locationtech.jts.geom.Coordinate
-import org.locationtech.jts.geom.Point
+import org.locationtech.jts.geom.LineString
 import org.slf4j.LoggerFactory
 
 private val logger = LoggerFactory.getLogger("nl.janboonen.labs.geotools.routing.common.GeoToolsExtensions")
@@ -85,4 +86,12 @@ fun simpleNetwork(): FeatureCollection<SimpleFeatureType, SimpleFeature> {
     feature3.setAttribute("name", "segment 3")
     feature3.setAttribute("class", "2")
     return DataUtilities.collection(listOf(feature1, feature2, feature3))
+}
+
+/**
+ * Gets the underlying Geometry from a Graph Edge (LineString).
+ */
+fun Edge.getGeometry(): LineString? {
+    val feature = this.getObject() as? SimpleFeature
+    return feature?.defaultGeometry as? LineString
 }
