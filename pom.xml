@@ -37,8 +37,8 @@
 
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>2.0.0</kotlin.version>
-        <jts.version>1.19.0</jts.version>
+        <kotlin.version>2.0.20</kotlin.version>
+        <jts.version>1.20.0</jts.version>
         <geotools.version>31.3</geotools.version>
         <jackson-geojson.version>0.18.1</jackson-geojson.version>
     </properties>
