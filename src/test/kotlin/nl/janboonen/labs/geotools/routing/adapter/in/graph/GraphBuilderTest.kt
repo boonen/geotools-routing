@@ -5,7 +5,6 @@ import nl.janboonen.labs.geotools.routing.common.locationFeature
 import nl.janboonen.labs.geotools.routing.common.point
 import nl.janboonen.labs.geotools.routing.common.simpleNetwork
 import org.assertj.core.api.Assertions.assertThat
-import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.feature.DefaultFeatureCollection
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -22,13 +21,13 @@ class GraphBuilderTest {
         assertThat(graph).isNotNull
         assertThat(graph.edges.size).isEqualTo(3)
         assertThat(graph.nodes.size).isEqualTo(4)
-        assertThat(graph.edges.stream().findFirst().get().`object`).isInstanceOf(SimpleFeature::class.java)
+        assertThat(graph.edges.stream().findFirst().get().`object`).isInstanceOf(RouteSegmentFeature::class.java)
     }
 
     @Test
     fun buildGraph_throwsIllegalArgumentException_whenFeatureTypeIsEmpty() {
         val exception = assertThrows<IllegalArgumentException> {
-            GraphBuilder(DefaultFeatureCollection())
+            GraphBuilder(RouteSegmentFeatureCollection(DefaultFeatureCollection()))
         }
 
         assertThat(exception.message).contains("Feature Collection cannot be empty.")
@@ -59,7 +58,7 @@ class GraphBuilderTest {
     @Test
     fun addVirtualNodes_returnsOriginalGraph_whenNoLocationsProvided() {
         val graph = graphBuilder.getGraph()
-        val locations = DefaultFeatureCollection()
+        val locations = RouteSegmentFeatureCollection(DefaultFeatureCollection())
         val (newGraph, edges) = graphBuilder.addVirtualNodes(locations)
 
         assertThat(newGraph.edges).isEqualTo(graph.edges)

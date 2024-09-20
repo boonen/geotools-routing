@@ -1,7 +1,6 @@
 package nl.janboonen.labs.geotools.routing.adapter.`in`.graph
 
 import nl.janboonen.labs.geotools.routing.common.*
-import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.graph.build.GraphBuilder
 import org.geotools.graph.build.basic.BasicGraphBuilder
 import org.geotools.graph.build.feature.FeatureGraphGenerator
@@ -12,10 +11,11 @@ import org.geotools.graph.structure.basic.BasicEdge
 import org.geotools.graph.structure.basic.BasicNode
 import org.locationtech.jts.geom.LineString
 import org.locationtech.jts.geom.Point
+import java.util.UUID
 
 
 class GraphBuilder(
-    featureCollection: SimpleFeatureCollection,
+    featureCollection: RouteSegmentFeatureCollection,
     private val graphBuilder: GraphBuilder = BasicGraphBuilder()
 ) {
 
@@ -25,7 +25,7 @@ class GraphBuilder(
         referenceGraph = createGraphFromFeatures(featureCollection)
     }
 
-    private fun createGraphFromFeatures(featureCollection: SimpleFeatureCollection): Graph {
+    private fun createGraphFromFeatures(featureCollection: RouteSegmentFeatureCollection): Graph {
         val graphGenerator = FeatureGraphGenerator(LineStringGraphGenerator())
 
         require(!featureCollection.isEmpty) { "Feature Collection cannot be empty." }
@@ -41,7 +41,7 @@ class GraphBuilder(
     /**
      * Adds virtual nodes by splitting the edges which lie closest to the given locations.
      */
-    fun addVirtualNodes(locations: SimpleFeatureCollection): Pair<Graph, List<Edge>> {
+    fun addVirtualNodes(locations: RouteSegmentFeatureCollection): Pair<Graph, List<Edge>> {
         val insertedEdges = mutableListOf<Edge>()
         var sourceGraph = referenceGraph
         locations.forEach {
@@ -88,19 +88,29 @@ class GraphBuilder(
     ): Graph {
         val nodeA = edgeToSplit.getNodeA()
         val nodeB = edgeToSplit.getNodeB()
-        val originalFeature = edgeToSplit.`object` as SimpleFeature
+        val originalFeature = edgeToSplit.`object` as RouteSegmentFeature
 
         graphBuilder.importGraph(sourceGraph)
         graphBuilder.removeEdge(edgeToSplit)
 
         val newNode = BasicNode().apply { `object` = nodeToInsert }
-        val originalName = originalFeature.getAttribute("name") as String
-        val originalClass = originalFeature.getAttribute("class") as String
+        val originalName = originalFeature.name
+        val originalClass = originalFeature.segmentClass
 
-        val edgeFeatureA =
-            createEdgeFeature("${edgeToSplit.id}_1", "$originalName 1", originalClass, segmentsToInsert.first)
-        val edgeFeatureB =
-            createEdgeFeature("${edgeToSplit.id}_2", "$originalName 2", originalClass, segmentsToInsert.second)
+        val edgeFeatureA = createRouteSegmentFeature(
+            id = "${edgeToSplit.id}_1",
+            geometry = segmentsToInsert.first,
+            segmentClass = originalClass,
+            code = UUID.randomUUID().toString(),
+            name = "$originalName 1"
+        )
+        val edgeFeatureB = createRouteSegmentFeature(
+            id = "${edgeToSplit.id}_2",
+            geometry = segmentsToInsert.second,
+            segmentClass = originalClass,
+            code = UUID.randomUUID().toString(),
+            name = "$originalName 2"
+        )
         val newEdgeA = BasicEdge(nodeA, newNode).apply { `object` = edgeFeatureA }
         val newEdgeB = BasicEdge(newNode, nodeB).apply { `object` = edgeFeatureB }
         newNode.add(newEdgeA)
@@ -111,14 +121,6 @@ class GraphBuilder(
         graphBuilder.addNode(newNode)
 
         return graphBuilder.graph
-    }
-
-    private fun createEdgeFeature(id: String, name: String, classAttr: String, geometry: LineString): SimpleFeature {
-        val featureEdge = featureBuilder.buildFeature(id)
-        featureEdge.setAttribute("name", name)
-        featureEdge.setAttribute("class", classAttr)
-        featureEdge.defaultGeometry = geometry
-        return featureEdge
     }
 
 }

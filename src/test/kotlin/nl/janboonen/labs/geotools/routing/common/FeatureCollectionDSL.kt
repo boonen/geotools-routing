@@ -1,5 +1,6 @@
 package nl.janboonen.labs.geotools.routing.common
 
+import nl.janboonen.labs.geotools.routing.adapter.`in`.graph.RouteSegmentFeatureCollection
 import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.feature.DefaultFeatureCollection
 import org.geotools.feature.simple.SimpleFeatureBuilder
@@ -52,10 +53,10 @@ class FeatureCollectionDSL {
         this.features.addAll(features)
     }
 
-    fun build(): SimpleFeatureCollection {
-        return DefaultFeatureCollection().apply {
+    fun build(): RouteSegmentFeatureCollection {
+        return RouteSegmentFeatureCollection(DefaultFeatureCollection().apply {
             features.forEach { add(it) }
-        }
+        })
     }
 }
 
@@ -65,7 +66,7 @@ fun edgeFeature(init: EdgeFeatureDSL.() -> Unit): SimpleFeature {
     return dsl.build()
 }
 
-fun featureCollection(init: FeatureCollectionDSL.() -> Unit): SimpleFeatureCollection {
+fun featureCollection(init: FeatureCollectionDSL.() -> Unit): RouteSegmentFeatureCollection {
     val dsl = FeatureCollectionDSL()
     dsl.init()
     return dsl.build()

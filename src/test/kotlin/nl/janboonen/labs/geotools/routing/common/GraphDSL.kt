@@ -1,5 +1,6 @@
 package nl.janboonen.labs.geotools.routing.common
 
+import nl.janboonen.labs.geotools.routing.adapter.`in`.graph.RouteSegmentFeatureCollection
 import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.graph.build.basic.BasicGraphBuilder
 import org.geotools.graph.structure.Graph
@@ -28,7 +29,7 @@ class GraphDSL {
         edge.setObject(feature)
     }
 
-    fun fromFeatureCollection(featureCollection: SimpleFeatureCollection) {
+    fun fromFeatureCollection(featureCollection: RouteSegmentFeatureCollection) {
         featureCollection.forEach { edge(it) }
     }
 
