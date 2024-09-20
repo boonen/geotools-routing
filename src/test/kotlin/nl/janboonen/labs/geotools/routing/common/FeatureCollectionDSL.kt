@@ -1,6 +1,8 @@
 package nl.janboonen.labs.geotools.routing.common
 
+import nl.janboonen.labs.geotools.routing.adapter.`in`.graph.RouteSegmentFeature
 import nl.janboonen.labs.geotools.routing.adapter.`in`.graph.RouteSegmentFeatureCollection
+import nl.janboonen.labs.geotools.routing.adapter.`in`.graph.createRouteSegmentFeature
 import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.feature.DefaultFeatureCollection
 import org.geotools.feature.simple.SimpleFeatureBuilder
@@ -11,22 +13,14 @@ import org.locationtech.jts.geom.LineString
 import org.locationtech.jts.geom.Point
 
 class EdgeFeatureDSL {
-    private var featureBuilder: SimpleFeatureBuilder = edgeFeatureBuilder()
-    lateinit var geometry: Geometry
+    lateinit var geometry: LineString
     lateinit var id: String
-    var name: String = "defaultName"
-    var defaultTravelTime: Int? = null
+    lateinit var segmentClass: String
+    var code: String? = null
+    var historicalSpeed: Double? = null
 
-    fun build(): SimpleFeature {
-        val feature = featureBuilder.buildFeature(id).apply {
-            defaultGeometry = geometry
-            attributes.let { attributes ->
-                attributes[0] = id
-                attributes[1] = name
-                attributes[2] = defaultTravelTime
-            }
-        }
-        return feature
+    fun build(): RouteSegmentFeature {
+        return createRouteSegmentFeature(id, geometry, segmentClass, code ?: id, "Edge ${id}", historicalSpeed)
     }
 }
 
@@ -84,17 +78,6 @@ fun lineString(vararg coordinates: Coordinate): LineString {
 
 fun point(coordinate: Coordinate): Geometry {
     return geometryFactory.createPoint(coordinate)
-}
-
-fun edgeFeatureBuilder(): SimpleFeatureBuilder {
-    val featureTypeBuilder = SimpleFeatureTypeBuilder()
-    featureTypeBuilder.name = "Network Nodes"
-    featureTypeBuilder.defaultGeometry = "geometry"
-    featureTypeBuilder.add("geometry", LineString::class.java)
-    featureTypeBuilder.add("id", String::class.java)
-    featureTypeBuilder.add("name", String::class.java)
-    featureTypeBuilder.add("defaultTravelTime", Integer::class.java)
-    return SimpleFeatureBuilder(featureTypeBuilder.buildFeatureType())
 }
 
 fun locationFeatureBuilder(): SimpleFeatureBuilder {

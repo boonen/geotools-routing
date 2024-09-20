@@ -34,7 +34,7 @@ data class FacilitySchedule(
     // Can be expanded with closure schedules
 )
 
-data class RouteSectionClass(
+data class RouteSegmentClass(
     val id: String, val name: String,
     val allowedWidth: Double? = null,
     val allowedHeight: Double? = null,

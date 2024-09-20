@@ -1,0 +1,98 @@
+spring:
+  application:
+    name: Complex Routing using GeoTools
+
+network:
+  classes:
+    - id: "I"
+      name: "CEMT Class I"
+      allowedWidth: 5.05
+      allowedHeight: 5.0
+      allowedDraught: 2.0
+      maximumSpeed: 10.0
+    - id: "II"
+      name: "CEMT Class II"
+      allowedWidth: 6.6
+      allowedHeight: 6.0
+      allowedDraught: 2.5
+      maximumSpeed: 12.0
+    - id: "III"
+      name: "CEMT Class III"
+      allowedWidth: 8.2
+      allowedHeight: 7.0
+      allowedDraught: 2.8
+      maximumSpeed: 12.0
+    - id: "IV"
+      name: "CEMT Class IV"
+      allowedWidth: 9.5
+      allowedHeight: 7.0
+      allowedDraught: 3.5
+      maximumSpeed: 15.0
+    - id: "Va/Vb"
+      name: "CEMT Class Va/Vb"
+      allowedWidth: 11.4
+      allowedHeight: 7.0
+      allowedDraught: 4.0
+      maximumSpeed: 15.0
+    - id: "VIa/VIb/VIc"
+      name: "CEMT Class VIa/VIb/VIc"
+      allowedWidth: 15.0
+      allowedHeight: 9.1
+      allowedDraught: 4.5
+      maximumSpeed: 18.0
+    - id: "VII"
+      name: "CEMT Class VII"
+      allowedWidth: 22.8
+      allowedHeight: 9.1
+      allowedDraught: 4.5
+      maximumSpeed: 18.0
+    - id: "motorway"
+      name: "Motorways (Autosnelweg)"
+      allowedWidth: 3.75
+      allowedHeight: 4.5
+      maximumSpeed: 130.0
+    - id: "trunk"
+      name: "Trunk Roads (Autoweg)"
+      allowedWidth: 3.5
+      allowedHeight: 4.5
+      maximumSpeed: 100.0
+    - id: "primary"
+      name: "Primary Roads (National and Provincial Roads)"
+      allowedWidth: 3.25
+      allowedHeight: 4.5
+      maximumSpeed: 80.0
+    - id: "secondary"
+      name: "Secondary Roads (Regional Roads)"
+      allowedWidth: 3.25
+      allowedHeight: 4.5
+      maximumSpeed: 80.0
+    - id: "tertiary"
+      name: "Tertiary Roads (Urban and Minor Roads)"
+      allowedWidth: 3.0
+      allowedHeight: 4.5
+      maximumSpeed: 60.0
+    - id: "unclassified"
+      name: "Unclassified Roads (Minor Rural Roads)"
+      allowedWidth: 3.0
+      allowedHeight: 4.5
+      maximumSpeed: 60.0
+    - id: "residential"
+      name: "Residential Streets"
+      allowedWidth: 2.75
+      allowedHeight: 4.0
+      maximumSpeed: 30.0
+    - id: "service"
+      name: "Service Roads"
+      allowedWidth: 2.75
+      allowedHeight: 4.0
+      maximumSpeed: 30.0
+    - id: "living_street"
+      name: "Living Streets (Woonerf)"
+      allowedWidth: 2.5
+      allowedHeight: 4.0
+      maximumSpeed: 15.0
+    - id: "pedestrian"
+      name: "Pedestrian Zones"
+      allowedWidth: 2.0
+      allowedHeight: 4.0
+      maximumSpeed: 5.0

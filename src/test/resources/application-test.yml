@@ -1,0 +1,20 @@
+network:
+  segment-classes:
+    - id: "1"
+      name: "Class I"
+      allowedWidth: 5
+      allowedHeight: 5.0
+      allowedDraught: 2.0
+      maximumSpeed: 6.0
+    - id: "2"
+      name: "Class II"
+      allowedWidth: 10
+      allowedHeight: 10.0
+      allowedDraught: 2.5
+      maximumSpeed: 12.0
+    - id: "3"
+      name: "Class III"
+      allowedWidth: 20
+      allowedHeight: 30.0
+      allowedDraught: 4.2
+      maximumSpeed: 18.0
