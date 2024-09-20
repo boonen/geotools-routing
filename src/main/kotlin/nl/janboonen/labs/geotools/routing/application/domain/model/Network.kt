@@ -1,4 +1,4 @@
-package nl.janboonen.labs.geotools.routing.domain
+package nl.janboonen.labs.geotools.routing.application.domain.model
 
 import nl.janboonen.labs.geotools.routing.common.toTimeslot
 import java.math.BigInteger

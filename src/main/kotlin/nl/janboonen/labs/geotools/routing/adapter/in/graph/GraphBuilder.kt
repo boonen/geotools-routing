@@ -1,4 +1,4 @@
-package nl.janboonen.labs.geotools.routing.adapters.`in`.graph
+package nl.janboonen.labs.geotools.routing.adapter.`in`.graph
 
 import nl.janboonen.labs.geotools.routing.common.*
 import org.geotools.api.feature.simple.SimpleFeature

@@ -1,4 +1,4 @@
-package nl.janboonen.labs.geotools.routing.adapters.`in`.geopackage
+package nl.janboonen.labs.geotools.routing.adapter.`in`.geopackage
 
 import nl.janboonen.labs.geotools.routing.common.SimpleFeatureCollection
 import org.assertj.core.api.Assertions.assertThat

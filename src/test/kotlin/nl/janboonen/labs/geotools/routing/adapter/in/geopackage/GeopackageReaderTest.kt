@@ -1,6 +1,5 @@
-package nl.janboonen.labs.geotools.routing.adapters.`in`.geopackage
+package nl.janboonen.labs.geotools.routing.adapter.`in`.geopackage
 
-import nl.janboonen.labs.geotools.routing.adapters.`in`.geopackage.GeopackageReader
 import org.assertj.core.api.Assertions.assertThat
 import org.geotools.api.data.DataStore
 import org.geotools.api.data.DataStoreFinder
