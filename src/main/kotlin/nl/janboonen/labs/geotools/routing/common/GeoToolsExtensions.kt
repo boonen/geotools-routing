@@ -12,9 +12,6 @@ import org.geotools.graph.structure.Graph
 import org.geotools.graph.structure.Node
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.LineString
-import org.slf4j.LoggerFactory
-
-private val logger = LoggerFactory.getLogger("nl.janboonen.labs.geotools.routing.common.GeoToolsExtensions")
 
 val geometryFactory = JTSFactoryFinder.getGeometryFactory()
 
